@@ -841,43 +841,43 @@ def check_allowed_values(allowed_values, input_variable_path, input_values):
         input_values (list/str/int/float/date/datetime): the values that we
             are checking to see if they are in allowed_values
     """
-    these_allowed_values = list(allowed_values[input_variable_path].values())
-    if (isinstance(input_values, list)
-            and not set(input_values).issubset(
-                set(these_allowed_values))):
-        invalid_values = ", ".join(
-            map(str, set(input_values) - set(these_allowed_values))),
-        raise ApiValueError(
-            "Invalid values for `%s` [%s], must be a subset of [%s]" %
-            (
-                input_variable_path[0],
-                invalid_values,
-                ", ".join(map(str, these_allowed_values))
-            )
-        )
-    elif (isinstance(input_values, dict)
-            and not set(
-                input_values.keys()).issubset(set(these_allowed_values))):
-        invalid_values = ", ".join(
-            map(str, set(input_values.keys()) - set(these_allowed_values)))
-        raise ApiValueError(
-            "Invalid keys in `%s` [%s], must be a subset of [%s]" %
-            (
-                input_variable_path[0],
-                invalid_values,
-                ", ".join(map(str, these_allowed_values))
-            )
-        )
-    elif (not isinstance(input_values, (list, dict))
-            and input_values not in these_allowed_values):
-        raise ApiValueError(
-            "Invalid value for `%s` (%s), must be one of %s" %
-            (
-                input_variable_path[0],
-                input_values,
-                these_allowed_values
-            )
-        )
+    # these_allowed_values = list(allowed_values[input_variable_path].values())
+    # if (isinstance(input_values, list)
+    #         and not set(input_values).issubset(
+    #             set(these_allowed_values))):
+    #     invalid_values = ", ".join(
+    #         map(str, set(input_values) - set(these_allowed_values))),
+    #     raise ApiValueError(
+    #         "Invalid values for `%s` [%s], must be a subset of [%s]" %
+    #         (
+    #             input_variable_path[0],
+    #             invalid_values,
+    #             ", ".join(map(str, these_allowed_values))
+    #         )
+    #     )
+    # elif (isinstance(input_values, dict)
+    #         and not set(
+    #             input_values.keys()).issubset(set(these_allowed_values))):
+    #     invalid_values = ", ".join(
+    #         map(str, set(input_values.keys()) - set(these_allowed_values)))
+    #     raise ApiValueError(
+    #         "Invalid keys in `%s` [%s], must be a subset of [%s]" %
+    #         (
+    #             input_variable_path[0],
+    #             invalid_values,
+    #             ", ".join(map(str, these_allowed_values))
+    #         )
+    #     )
+    # elif (not isinstance(input_values, (list, dict))
+    #         and input_values not in these_allowed_values):
+    #     raise ApiValueError(
+    #         "Invalid value for `%s` (%s), must be one of %s" %
+    #         (
+    #             input_variable_path[0],
+    #             input_values,
+    #             these_allowed_values
+    #         )
+    #     )
 
 
 def is_json_validation_enabled(schema_keyword, configuration=None):
